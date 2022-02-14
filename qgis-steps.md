@@ -1,3 +1,12 @@
+## Add files and set projections
+
+Open a new map in QGIS.
+
+Add the `esri_atl_zips.shp` shapefile and the `atl_res_permits` data to the map.
+
+ADD MORE HERE.
+
+
 ## Point in polygon
 
 Point in polygon analysis allows you to count points that fall within a polygon. 
@@ -5,10 +14,6 @@ Point in polygon analysis allows you to count points that fall within a polygon.
 In order to see where the most new residences are being built in the city of Atlanta, we can overlay building permits (points) with Atlanta zip codes (polygon) and then ask QGIS to count the number of permits in each zip code.
 
 ### Steps:
-
-Open a new map in QGIS.
-
-Add the `esri_atl_zips.shp` shapefile and the `atl_res_permits` data to the map.
 
 Go to Vector > Analysis Tools > Count Points in Polygon.
 
