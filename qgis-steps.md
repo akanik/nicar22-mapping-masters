@@ -19,7 +19,7 @@ Use the following settings:
 
 Click Run.
 
-You should see a new layer called Count has been added to the map. If you examine the attribute table, you’ll see that this layer is a copy of the `esri_atl_zips` layer with an added field at the end called **permit_cnt**`.
+You should see a new layer called Count has been added to the map. If you examine the attribute table, you’ll see that this layer is a copy of the `esri_atl_zips` layer with an added field at the end called **permit_cnt**.
 
 The **permit_cnt** value is a sum of all of the residential permits for each zip code. 
 
@@ -70,5 +70,76 @@ It may take a minute, but you should see a new layer of hexagons added to your m
 
 Do a point in polygon analysis. Using the hexagons and the `atl_res_permits`, do a point in polygon analysis like we did above with the zip codes and the `atl_res_permits`.
 
-Style your hexagons. Using a graduated color scheme, style your hexagons so you can quickly identify areas that are more dangerous for pedestrians.
+## QGIS styling for visual analysis
 
+QGIS not only gives you the tools to perform advanced geographic processes, it also allows you to visually style your analysis so that you can quickly understand geographic patterns and trends. 
+
+### Steps:
+
+Open the layer Symbology tab. Double click your point-in-polygon hexagon layer and select the Symbology tab from the left sidebar.
+
+We can select from a variety of different symbology types:
+- Single Symbol = a uniform color or fill, line width and opacity for all layer features
+- Categorized = style features based on a category column. For example: if you had a political party column that contained values of either republican, democrat, libertarian or other, you could use categorized styling to assign specific styles to each category. 
+- Graduated = style features based on a number column. This style method allows you to group or bin number values so you can have specific styles for value ranges.
+- Rule-based = style features based on specific rules. This style method allows you to use rules, usually based on feature attribute values, to style individual features.
+
+We will be using Graduated styles today.
+
+Choose Graduated from the dropdown at the top of the Symbology window.
+
+Use these settings:
+- Value = **permit_cnt**
+- Color ramp = Blues
+- Mode = Pretty breaks
+- Classes = 5
+
+Click Classify.
+
+Click OK.
+
+
+Here’s more information on those mode options:
+
+- Mode = the way your value field will be grouped or binned. Let’s use
+- Equal Count (Quantile): each bin will have the same number of elements. For example, if you want your data broken into 5 bins, and you have 50 features you’re styling, you would have 10 features in each bin.
+- Equal Interval: each bin will have the same size. For example, if you have features with values from 1 to 16 and four classes, each class will have a size of four: 1 - 4, 4 - 8, 8 - 12 and 12 - 16. Bins may contain unequal numbers of features, unlike with quantile mode.
+- Logarithmic scale: suitable for data with a wide range of values. Narrow classes for low values and wide classes for large values. For example, for decimal numbers with range [0..100] and two bins, the first bin will be from 0 to 10 and the second bin from 10 to 100). [Read more about logarithmic scales](https://www.forbes.com/sites/naomirobbins/2012/01/19/when-should-i-use-logarithmic-scales-in-my-charts-and-graphs/?sh=45a215075e67) and when to use them.
+- Natural Breaks (Jenks): the variance within each bin is minimized while the variance between bins is maximized. As a result, this classification method is good at identifying clusters in the data. 
+- Pretty Breaks: bin ranges are chosen so that they are 1, 2 or 5 times a power of 10. As a result, pretty breaks does not always adhere to the number of classes or bins you choose.
+- Standard Deviation: bins are built depending on the standard deviation of the values. First the mean is calculated, then each standard deviation from that mean becomes a bin.
+
+[Here’s a good resource on many of these modes](https://gisgeography.com/choropleth-maps-data-classification/) if you’re interested in reading further.
+
+A note on class bounds:
+
+Lower bound NOT included
+Upper bound IS included
+
+## Exporting for interactive display
+
+When you’re exporting QGIS data for online display, usually you are exporting individual layers in order to import them into an online program like Mapbox or Carto. 
+
+There are a couple of important considerations for exporting files for online display:
+- Projection: depending on the service that you’re uploading your files into, you’ll want to make sure you export your layers with the appropriate project. Mapbox likes to receive files that are projected in the EPSG:4326 - WGS 84
+- Scope/size: only export features that you will want to display on your online map. For example, we wouldn’t want to export all of the hexbins that we created. We would want to filter out hexbins with fewer than 1 residential permit so that we’re exporting fewer features. Importing larger files into online mapping programs will both cost more and make your online maps load more slowly.
+
+### Steps:
+
+Filter out hexbins with zero permits. Open the your point-in-polygon hexbin layer’s attribute table and click the "Select features using an expression" button. 
+
+We are going to be filtering out bins with fewer than 1 permit so our expression will read as follows:  "permit_cnt" > 0.
+
+Click Select features.
+
+You should now see that all of the hexbins with permits have been selected!
+
+Save selection. Right click your selected point-in-polygon hexbin layer and select Export > Save selected features as.
+
+Use the following settings:
+- Format: GeoJSON
+- File name: use the 3 dots to navigated to our project folder and save as `atl-hexbin-res-permits`
+- CRS: EPSG:4326 - WGS 84
+- Save only selected features: should be checked
+
+Click OK.
