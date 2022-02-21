@@ -4,9 +4,9 @@ Open a new map in QGIS.
 
 Add the `esri_atl_zips.shp` shapefile and the `atl_res_permits` data to the map.
 
-A NOTE ON THE ZIP FILE: Zip codes aren't the preferred geographic unit to work with, but sometimes that's how data come to us so we need to make the best of it. We're using the [ESRI Zip Codes](https://www.arcgis.com/home/item.html?id=8d2012a2016e484dafaac0451f9aea24) which come as a `.lyr` file. 
+> **_NOTE:_** Zip codes aren't the preferred geographic unit to work with, but sometimes that's how data come to us so we need to make the best of it. We're using the [ESRI Zip Codes](https://www.arcgis.com/home/item.html?id=8d2012a2016e484dafaac0451f9aea24) which come as a `.lyr` file. 
 
-I've pulled out ATL zips for us to use during this tutorial, but if you want to grab your own city's zip code boundaries, [here are some instructions](https://gis.stackexchange.com/questions/34310/opening-lyr-file-via-rgdal-ogr) on how to convert that `.lyr` file into a `.gdb`. You should then be able to add the `.gdb` directory [using these instructions](https://gis.stackexchange.com/questions/26285/installing-file-geodatabase-gdb-support-in-qgis#:~:text=To%20open%20a%20geodatabase%20in,into%20your%20Table%20of%20Contents.). There is a column called **STATE** that you can use to filter your state's zip codes to get a more manageable file. Once you start joining data to your statewide zip codes, you should be able to filter out zips that aren't being used by the data. 
+> I've pulled out ATL zips for us to use during this tutorial, but if you want to grab your own city's zip code boundaries, [here are some instructions](https://gis.stackexchange.com/questions/34310/opening-lyr-file-via-rgdal-ogr) on how to convert that `.lyr` file into a `.gdb`. You should then be able to add the `.gdb` directory [using these instructions](https://gis.stackexchange.com/questions/26285/installing-file-geodatabase-gdb-support-in-qgis#:~:text=To%20open%20a%20geodatabase%20in,into%20your%20Table%20of%20Contents.). There is a column called **STATE** that you can use to filter your state's zip codes to get a more manageable file. Once you start joining data to your statewide zip codes, you should be able to filter out zips that aren't being used by the data. 
 
 
 ## Point in polygon
