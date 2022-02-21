@@ -2,7 +2,9 @@
 
 [Intro to spatial data](https://docs.google.com/document/d/1RQa1SoCTSXt4M-NC93U93vScXxn79sWzqJsDVKmqtPQ/edit#heading=h.b56ghjle2ufi), including an introduction to the different types of geographic elements, types of geographic files, working with non-geographic elements, geocoding and where to find geographic data.
 
-Intro to QGIS, including what QGIS can/can't do, getting to know panels and toolbars, examining attribute tables, 
+[Intro to QGIS](https://docs.google.com/document/d/1IuPyht3HhYzQNggURBXedp4O4jF6f_lyRoZV10sKrus/edit#heading=h.vq4ekdw46dq3), including what QGIS can/can't do, getting to know panels and toolbars, examining attribute tables, creating new columns and altering data types and saving files.
+
+[Intro to analysis in QGIS](https://docs.google.com/document/d/1LCjMGMst95GeBnMx-dmVQ66-XiaCB3uz6NrZzluYNMk/edit#heading=h.3zw8nxwawury), including styling layer, spatial joins and filtering shapes.
 
 ## Adding files
 
@@ -17,6 +19,74 @@ Remember to tell QGIS that your delimited text file has point coordinates so tha
 > I've pulled out ATL zips for us to use during this tutorial, but if you want to grab your own city's zip code boundaries, [here are some instructions](https://gis.stackexchange.com/questions/34310/opening-lyr-file-via-rgdal-ogr) on how to convert that `.lyr` file into a `.gdb`. You should then be able to add the `.gdb` directory [using these instructions](https://gis.stackexchange.com/questions/26285/installing-file-geodatabase-gdb-support-in-qgis#:~:text=To%20open%20a%20geodatabase%20in,into%20your%20Table%20of%20Contents.). There is a column called **STATE** that you can use to filter your state's zip codes to get a more manageable file. Once you start joining data to your statewide zip codes, you should be able to filter out zips that aren't being used by the data. 
 
 ## Setting project and layer projections
+
+Projections are how we use two-dimensional space to talk about three-dimensional space. Polygons like county and state borders are three-dimensional, but we do our best to show them in two dimensions in print and online.
+
+A coordinate reference system defines how projected space reflects real space. 
+
+If you want to do some more in depth reading on QGIS and projections, you can read [their documentation here](https://docs.qgis.org/3.16/en/docs/user_manual/working_with_projections/working_with_projections.html).
+
+### Geographic vs. projected: points vs. polygons
+
+The best way I’ve ever heard the differentiation between geographic coordinate system (GCS) and projected coordinate systems (PCS) explained is from [Heather Smith at the Arc Blog](https://www.esri.com/arcgis-blog/products/arcgis-pro/mapping/gcs_vs_pcs/):
+
+- A GCS defines where the data is located on the earth’s surface.
+- A PCS tells the data how to draw on a flat surface, like on a paper map or a computer screen.
+
+When you’ve got points, whose only definition are location, you want a GCS. When you’ve got lines or polygons, you need to know how to draw the shape on a flat surface, so you need a PCS.
+
+### Which projection should I use and when?
+
+QGIS supports over 7,000 coordinate reference systems, both GCS and PCS. So how do you know which to use and when?
+
+One consideration is visual. A layer’s CRS defines how it will appear on a 2D map. Georgia, when displayed using a projection meant for Texas will look quite misshapen.
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+caption: Georgia displayed with the NAP_1983_Texas_Statewide_Mapping_System projection (left) and again with the more appropriate NAD_1983_2011_StatePlane_Georgia_West_FIPS_1002_Ft_US (right)]
+
+A good way to figure out which of the 7,000+ projections to use for your specific area is to download some geographic files provided by your local government. For this session, I went to the [Atlanta Open Data portal](https://www.atlantaga.gov/government/mayor-s-office/executive-offices/office-of-innovation-delivery-and-performance/dataatlanta) and downloaded a geographic file. I opened that file in QGIS, double clicked the layer in the layers panel and looked under then Information tab. The project is listed by the CRS key.
+
+IMAGE OF ATL ZONING FILE INFORMATION TAB
+
+Another consideration in choosing a CRS is alignment. If you are trying to do geospatial analyses with multiple layers, you need to make sure your layers are in the same projection. 
+
+In recent years, QGIS has made great advances in how it works with projection. Currently, when you import a file into QGIS, the system determines the correct projection for that layer based on system settings. If you haven’t changed these settings, your mapping projections are likely set by the first layer that you import into your map.
+
+From QGIS docs:
+
+>> “QGIS supports “on the fly” CRS transformation for both raster and vector data. This means that regardless of the underlying CRS of particular map layers in your project, they will always be automatically transformed into the common CRS defined for your project. Behind the scenes, QGIS transparently reprojects all layers contained within your project into the project’s CRS, so that they will all be rendered in the correct position with respect to each other!”
+
+### Changing map projections
+
+If you know which CRS you want your map to be projected with, you can set your projection at the map or project level. Then, all files you import will be "on the fly" projected using that CRS.
+
+To set that projection:
+
+- Import your first file. 
+- Go to Project > Properties in the main menu.
+- Select the CRS tab.
+- Select your desired CRS
+- Click OK.
+
+Now all files you add will be visually (on-the-fly) projected to that CRS. If you were to close QGIS and add those same files to a new map, you would find that the projection was project specific and did not stay with the individual geo files.
+
+### Changing file projections
+
+If we do want to create layers with specifically-assigned projections, we can use the QGIS export features function to create those. 
+
+Let's export our `esri_atl_zips` and `atl_res_permits` layers with an Atlanta specific CRS: NAD_1983_2011_StatePlane_Georgia_West_FIPS_1002_Ft_US (EPSG: 6447). 
+
+- Right click your `esri_atl_zips` layer and select Export > Save features as. 
+
+Use the following settings:
+- Format = GeoPackage
+- File name = {project-specific GIS directory path}/GIS/esri_atl_zips_proj6447
+- CRS = EPSG: 6447 - NAD_1983_2011_StatePlane_Georgia_West_FIPS_1002_Ft_US
+
+Keep other options as they are and click OK. 
+
+You will notice that I have changed the name of the file. We’ve added a `_proj6447` to the end of the filename. This is so we can quickly see that this file is specifically projected. If you have the same file projected in different ways, you will want to have a way of designating the CRS in the filename or at least in the folder containing the files so as not to confuse yourself.
+
 
 
 ## Point in polygon
