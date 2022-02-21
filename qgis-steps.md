@@ -87,7 +87,7 @@ Keep other options as they are and click OK.
 
 You will notice that I have changed the name of the file. We’ve added a `_proj6447` to the end of the filename. This is so we can quickly see that this file is specifically projected. If you have the same file projected in different ways, you will want to have a way of designating the CRS in the filename or at least in the folder containing the files so as not to confuse yourself.
 
-
+Repeat the above with the `atl_res_permits` layer. Also save this as a geopackage and don't forget to add the CRS suffix.
 
 ## Point in polygon
 
@@ -129,11 +129,7 @@ This is extremely helpful because many datasets have nothing to do with politica
 
 MMQGIS should already be installed as a QGIS plugin. If it's not, go to the plugins main menu, search for and install MMQGIS. 
 
-Set your project CRS. We’re going to need to reference the units used by the project CRS later on in this process so we need to be sure the CRS is set to something that uses feet: EPSG:6447 - NAD83(2011) / Georgia West (ftUS) - Projected. 
-
-Go to Project > Properties > CRS and search "6447". Select ** NAD83(2011) / Georgia West (ftUS)** and click OK.
-
-Reproject your point data. We’re going to also need the points data (in this case `atl_res_permits`) to be projected in the same EPSG:6447. 
+If you haven't already reprojected your `esri_atl_zips` and `atl_res_permits` layers to be in the same projection, do that now.
 
 Next, we're going to calculate the hexbin short diagonal. Figure out how big you want your grids to be. When doing local analyses, often times I try to make my hexbins the average area of a city block.
 
