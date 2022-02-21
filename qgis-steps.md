@@ -1,12 +1,22 @@
-## Add files and set projections
+## Things we're not going to cover that might be useful
+
+[Intro to spatial data](https://docs.google.com/document/d/1RQa1SoCTSXt4M-NC93U93vScXxn79sWzqJsDVKmqtPQ/edit#heading=h.b56ghjle2ufi), including an introduction to the different types of geographic elements, types of geographic files, working with non-geographic elements, geocoding and where to find geographic data.
+
+Intro to QGIS, including what QGIS can/can't do, getting to know panels and toolbars, examining attribute tables, 
+
+## Adding files
 
 Open a new map in QGIS.
 
 Add the `esri_atl_zips.gpkg` vector file and `atl_res_permits.csv` delimited text file to the map.
 
+Remember to tell QGIS that your delimited text file has point coordinates so that our permit data will appear as points.
+
 > **_NOTE:_** Zip codes aren't the preferred geographic unit to work with, but sometimes that's how data come to us so we need to make the best of it. We're using the [ESRI Zip Codes](https://www.arcgis.com/home/item.html?id=8d2012a2016e484dafaac0451f9aea24) which come as a `.lyr` file. 
 
 > I've pulled out ATL zips for us to use during this tutorial, but if you want to grab your own city's zip code boundaries, [here are some instructions](https://gis.stackexchange.com/questions/34310/opening-lyr-file-via-rgdal-ogr) on how to convert that `.lyr` file into a `.gdb`. You should then be able to add the `.gdb` directory [using these instructions](https://gis.stackexchange.com/questions/26285/installing-file-geodatabase-gdb-support-in-qgis#:~:text=To%20open%20a%20geodatabase%20in,into%20your%20Table%20of%20Contents.). There is a column called **STATE** that you can use to filter your state's zip codes to get a more manageable file. Once you start joining data to your statewide zip codes, you should be able to filter out zips that aren't being used by the data. 
+
+## Setting project and layer projections
 
 
 ## Point in polygon
@@ -25,6 +35,8 @@ Use the following settings:
 - Count field name = **permit_cnt**
 
 Click Run.
+
+Once the process has completed, you can close the Points in Polygon popup window.
 
 You should see a new layer called Count has been added to the map. If you examine the attribute table, you’ll see that this layer is a copy of the `esri_atl_zips` layer with an added field at the end called **permit_cnt**.
 
