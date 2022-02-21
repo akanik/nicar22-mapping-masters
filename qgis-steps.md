@@ -2,7 +2,7 @@
 
 Open a new map in QGIS.
 
-Add the `esri_atl_zips.shp` shapefile and the `atl_res_permits` data to the map.
+Add the `esri_atl_zipcodes.gpkg` vector file and `atl_res_permits` delimited text file to the map.
 
 > **_NOTE:_** Zip codes aren't the preferred geographic unit to work with, but sometimes that's how data come to us so we need to make the best of it. We're using the [ESRI Zip Codes](https://www.arcgis.com/home/item.html?id=8d2012a2016e484dafaac0451f9aea24) which come as a `.lyr` file. 
 
