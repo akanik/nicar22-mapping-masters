@@ -23,6 +23,10 @@ A Mapbox dataset is an editable collection of points, lines or polygons. Much of
 ### Tilesets (Self-hosting files vs. Mapbox hosting)
 Tilesets are geographic data (geojson, shapefiles, etc) that have been converted into vector tiles visible at different zoom levels. That sounds more confusing than it is. Consider the following:
 
+![Sacramento Meadowview data tileset zoom level explainer](./img/tileset-zooms.png)
+
+The image on the left is population data for the Meadowview neighborhood in Sacramento at a zoom level of about 9.5. It makes sense for each point to be visible at that zoom level. The image on the right is the same dataset at a zoom level of about 4.5. There is no reason for those points to be rendering at that zoom level because their geographic importance at such a distance is basically nonexistent. 
+
 There are two ways of using geographic data in Mapbox. You can upload the data via Mapbox Studio's Tileset interface, or you can self-host your geojson files.
 
 The biggest benefit to using Mapbox tilesets is performance. From the [Mapbox docs](https://docs.mapbox.com/help/troubleshooting/mapbox-gl-js-performance/#use-vector-tileset-sources): "Use vector tileset sources over GeoJSON data sources when possible. The renderer splits features in vector tilesets into tiles which allows GL JS to load only the features that are visible on the map. Feature geometries are also simplified meaning there are fewer vertices resulting in reduced render, source update, and layer update times."
@@ -31,7 +35,7 @@ Your self-hosted data will also be converted into vector tiles, but it will be a
 
 Another benefit is that you can do more non-code styling of your data using Mapbox Styles.
 
-> [Tips](https://docs.mapbox.com/help/troubleshooting/working-with-large-geojson-data/) for reducing the size of your geojson files:
+**[Tips](https://docs.mapbox.com/help/troubleshooting/working-with-large-geojson-data/) for reducing the size of your geojson files:**
 - remove unnecessary properties/variables
 - set the `maxZoom` level on your geoJSON source so it's not larger than you need
 - if possible, use point clustering for point locator maps. If you can't cluster, allow points to overlap by setting the source `layout` property `icon-allow-overlap` to `true`
