@@ -18,9 +18,10 @@ Your Mapbox account is free, but some of the things you'll do in Mapbox will inc
 ## Datasets, Tilesets and Styles
 
 ### Datasets
+A Mapbox dataset is an editable collection of points, lines or polygons. Much of what you can do with datasets you can do with geographics files in QGIS. Therefore, we will not be going over these much. But I encourage you to [read more about them](https://docs.mapbox.com/studio-manual/reference/datasets/) and see if working with Mapbox datasets is a thing that will work better for you.
 
 ### Tilesets (Self-hosting files vs. Mapbox hosting)
-So what's all this talk of tilesets and uploading them? 
+Tilesets are geographic data (geojson, shapefiles, etc) that have been converted into vector tiles visible at different zoom levels. That sounds more confusing than it is. Consider the following:
 
 There are two ways of using geographic data in Mapbox. You can upload the data via Mapbox Studio's Tileset interface, or you can self-host your geojson files.
 
@@ -39,10 +40,15 @@ Another benefit is that you can do more non-code styling of your data using Mapb
 - Simplify overly-complex shapes using [mapshaper](https://mapshaper.org/)
 - See more options on this [trouble-shooting guide](https://docs.mapbox.com/help/troubleshooting/uploads/#troubleshooting)
 
-Include explanation of how tilesets and zoom levels work.
+### Styles
+Styles are a combination of basemaps and tilesets. By creating and importing new styles, you can change how many basemap features are visible and at which zoom levels they are visible. You can also tilesets to a style and leverage GUI layer styling. 
 
 
 ## What you can do without code
+
+You can use Style iframes to export maps without much interactivity. You can export maps that have custom basemap features and styled layers, but you won't be able to add UI like popups. 
+
+Read more about [using Style iframes here](https://docs.mapbox.com/help/glossary/iframe/).
 
 ## Using Github to host your maps
 https://pages.github.com/
