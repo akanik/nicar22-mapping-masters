@@ -57,11 +57,20 @@ Read more about [using Style iframes here](https://docs.mapbox.com/help/glossary
 ## Using Github to host your maps
 https://pages.github.com/
 
-## Example: Basic point locator + popup
+## Mapbox examples
+We're going to use the data we manipulated in QGIS to make a few Mapbox maps!
 
-## Example: Layer choropleth + popup
+I order to view the html code we're about to work with, you'll need to do the following:
+- open your computer's terminal
+- type `cd [path to this classes folder]`
+- once in the correct folder, type `python -m http.server`
+- go to `localhost:8000/mapbox-point-popup.html` in your browser and you should see a map!
 
-## Example: Cluster points + popup
+[Example: Basic point locator + popup](./mapbox-point-popup.html)
+
+[Example: Layer choropleth + popup](./mapbox-polygon-popup.html)
+
+[Example: Cluster points + popup](./mapbox-point-cluster.html)
 
 ## Other examples
 Here's a list of all of the [Mapbox-hosted examples](https://docs.mapbox.com/mapbox-gl-js/example/).
