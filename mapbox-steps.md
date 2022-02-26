@@ -12,18 +12,40 @@ Your Mapbox account is free, but some of the things you'll do in Mapbox will inc
 
 [Map loads](https://www.mapbox.com/pricing/) - “A map load is counted every time Mapbox GL JS initializes on a webpage or in a web app. A map load includes unlimited Vector Tiles API and Raster Tiles API requests.” You will get up to 50,000 map loads are free per month.
 
-[Tilesets](https://docs.mapbox.com/studio-manual/reference/tilesets/) - “Tilesets uploaded in Mapbox Studio are free, and do not incur processing or hosting charges. Free uploads via Mapbox Studio are limited to 20 uploads per month, and 300 MB per upload.” You can bypass these restrictions by 
+[Tilesets](https://docs.mapbox.com/studio-manual/reference/tilesets/) - “Tilesets uploaded in Mapbox Studio are free, and do not incur processing or hosting charges. Free uploads via Mapbox Studio are limited to 20 uploads per month, and 300 MB per upload.” If you require more than 20 uploads or your files are larger than 300 MB, you can use [Mapbox Tiling Services](https://docs.mapbox.com/mapbox-tiling-service/guides/) or the [Uploads] API(https://docs.mapbox.com/api/maps/uploads/). NOTE: it seems like Mapbox is putting most of its eggs in the MTS basket so if you're trying to decide which alternate Tileset upload method to use, that's probably the one to invest your time in.
 
 
 ## Datasets, Tilesets and Styles
+
+### Datasets
+
+### Tilesets (Self-hosting files vs. Mapbox hosting)
+So what's all this talk of tilesets and uploading them? 
+
+There are two ways of using geographic data in Mapbox. You can upload the data via Mapbox Studio's Tileset interface, or you can self-host your geojson files.
+
+The biggest benefit to using Mapbox tilesets is performance. From the [Mapbox docs](https://docs.mapbox.com/help/troubleshooting/mapbox-gl-js-performance/#use-vector-tileset-sources): "Use vector tileset sources over GeoJSON data sources when possible. The renderer splits features in vector tilesets into tiles which allows GL JS to load only the features that are visible on the map. Feature geometries are also simplified meaning there are fewer vertices resulting in reduced render, source update, and layer update times."
+
+Your self-hosted data will also be converted into vector tiles, but it will be an on-the-fly process and will not be as optimized as importing your data as a Mapbox tileset.
+
+Another benefit is that you can do more non-code styling of your data using Mapbox Styles.
+
+> [Tips](https://docs.mapbox.com/help/troubleshooting/working-with-large-geojson-data/) for reducing the size of your geojson files:
+- remove unnecessary properties/variables
+- set the `maxZoom` level on your geoJSON source so it's not larger than you need
+- if possible, use point clustering for point locator maps. If you can't cluster, allow points to overlap by setting the source `layout` property `icon-allow-overlap` to `true`
+- store geoJSON files in a URL rather than loading them as a variable/Object
+- Convert multipart features to singlepart features, if possible
+- Simplify overly-complex shapes using [mapshaper](https://mapshaper.org/)
+- See more options on this [trouble-shooting guide](https://docs.mapbox.com/help/troubleshooting/uploads/#troubleshooting)
+
 Include explanation of how tilesets and zoom levels work.
 
-
-## Self-hosting files vs. Mapbox hosting
 
 ## What you can do without code
 
 ## Using Github to host your maps
+https://pages.github.com/
 
 ## Example: Basic point locator + popup
 
