@@ -96,6 +96,8 @@ Point in polygon analysis allows you to count points that fall within a polygon.
 
 In order to see where the most new residences are being built in the city of Atlanta, we can overlay building permits (points) with Atlanta zip codes (polygon) and then ask QGIS to count the number of permits in each zip code.
 
+![Point in polygon popup window example](./img/point-in-polygon-popup.png)
+
 ### Steps:
 
 Go to Vector > Analysis Tools > Count Points in Polygon.
@@ -110,6 +112,8 @@ Click Run.
 Once the process has completed, you can close the Points in Polygon popup window.
 
 You should see a new layer called Count has been added to the map. If you examine the attribute table, you’ll see that this layer is a copy of the `esri_atl_zips` layer with an added field at the end called **permit_cnt**.
+
+![Point in polygon attribute table example](./img/point-in-polygon-attr.png)
 
 The **permit_cnt** value is a sum of all of the residential permits for each zip code. 
 
