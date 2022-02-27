@@ -105,13 +105,13 @@ Go to Vector > Analysis Tools > Count Points in Polygon.
 Use the following settings:
 - **Polygons** = `esri_atl_zips`
 - **Points** = `atl_res_permits`
-- **Count field name** = **permit_cnt**
+- **Count field name** = *permit_cnt*
 
 Click Run.
 
 Once the process has completed, you can close the Points in Polygon popup window.
 
-You should see a new layer called Count has been added to the map. If you examine the attribute table, you’ll see that this layer is a copy of the `esri_atl_zips` layer with an added field at the end called **permit_cnt**.
+You should see a new layer called **Count** has been added to the map. If you examine the attribute table, you’ll see that this layer is a copy of the `esri_atl_zips` layer with an added field at the end called **permit_cnt**.
 
 ![Point in polygon attribute table example](./img/point-in-polygon-attr.png)
 
