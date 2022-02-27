@@ -41,8 +41,7 @@ QGIS supports over 7,000 coordinate reference systems, both GCS and PCS. So how 
 
 One consideration is visual. A layer’s CRS defines how it will appear on a 2D map. Georgia, when displayed using a projection meant for Texas will look quite misshapen.
 
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-caption: Georgia displayed with the NAP_1983_Texas_Statewide_Mapping_System projection (left) and again with the more appropriate NAD_1983_2011_StatePlane_Georgia_West_FIPS_1002_Ft_US (right)]
+![caption: Georgia displayed with the NAP_1983_Texas_Statewide_Mapping_System projection (left) and again with the more appropriate NAD_1983_2011_StatePlane_Georgia_West_FIPS_1002_Ft_US (right)](./img/georgia-projection-diff.png)
 
 A good way to figure out which of the 7,000+ projections to use for your specific area is to download some geographic files provided by your local government. For this session, I went to the [Atlanta Open Data portal](https://www.atlantaga.gov/government/mayor-s-office/executive-offices/office-of-innovation-delivery-and-performance/dataatlanta) and downloaded a geographic file. I opened that file in QGIS, double clicked the layer in the layers panel and looked under then Information tab. The project is listed by the CRS key.
 
