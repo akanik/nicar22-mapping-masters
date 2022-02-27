@@ -75,7 +75,7 @@ If we do want to create layers with specifically-assigned projections, we can us
 
 Let's export our `esri_atl_zips` and `atl_res_permits` layers with an Atlanta specific CRS: NAD_1983_2011_StatePlane_Georgia_West_FIPS_1002_Ft_US (EPSG: 6447). 
 
-- Right click your `esri_atl_zips` layer and select Export > Save features as. 
+Right click your `esri_atl_zips` layer and select Export > Save features as. 
 
 Use the following settings:
 - **Format** = GeoPackage
