@@ -78,15 +78,17 @@ Let's export our `esri_atl_zips` and `atl_res_permits` layers with an Atlanta sp
 - Right click your `esri_atl_zips` layer and select Export > Save features as. 
 
 Use the following settings:
-- Format = GeoPackage
-- File name = {project-specific GIS directory path}/GIS/esri_atl_zips_proj6447
-- CRS = EPSG: 6447 - NAD_1983_2011_StatePlane_Georgia_West_FIPS_1002_Ft_US
+- **Format** = GeoPackage
+- **File name** = {project-specific GIS directory path}/GIS/esri_atl_zips_proj6447
+- **CRS** = EPSG: 6447 - NAD_1983_2011_StatePlane_Georgia_West_FIPS_1002_Ft_US
 
 Keep other options as they are and click OK. 
 
-You will notice that I have changed the name of the file. We’ve added a `_proj6447` to the end of the filename. This is so we can quickly see that this file is specifically projected. If you have the same file projected in different ways, you will want to have a way of designating the CRS in the filename or at least in the folder containing the files so as not to confuse yourself.
+> You will notice that I have changed the name of the file. We’ve added a `_proj6447` to the end of the filename. This is so we can quickly see that this file is specifically projected. If you have the same file projected in different ways, you will want to have a way of designating the CRS in the filename or at least in the folder containing the files so as not to confuse yourself.
 
 Repeat the above with the `atl_res_permits` layer. Also save this as a geopackage and don't forget to add the CRS suffix.
+
+Remove the non-projected layers.
 
 ## Point in polygon
 
