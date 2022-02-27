@@ -66,11 +66,26 @@ I order to view the html code we're about to work with, you'll need to do the fo
 - once in the correct folder, type `python -m http.server`
 - go to `localhost:8000/mapbox-point-popup.html` in your browser and you should see a map!
 
-[Example: Basic point locator + popup](./mapbox-point-popup.html)
+We will be opening the following 3 html files using a code editor.
 
-[Example: Layer choropleth + popup](./mapbox-polygon-popup.html)
+### [Example: Basic point locator + popup](./mapbox-point-popup.html)
+First we need to upload our building permit points geojson as a Mapbox Tileset.
 
-[Example: Cluster points + popup](./mapbox-point-cluster.html)
+Go to [Mapbox > Tilesets](https://studio.mapbox.com/tilesets/), click **New Tileset** and upload the point geojson you created from the QGIS portion of this class. If you weren't able to create that file or your file keeps erroring out for some reason (likely because you didn't project it correctly), you can use [the backup geojson](#) I've created for just such an eventuality!
+
+Once your building permits file has uploaded, take note of the Tileset ID.
+
+Now we're going to create a style.
+
+Got to [Mapbox > Styles](https://studio.mapbox.com/) and click **New Style**. Choose a template and a variation that suite your fancy. I would recommend Monochrome Light because it will be easier to see our points and other layers. Click **Customize**.
+
+
+
+
+
+### [Example: Layer choropleth + popup](./mapbox-polygon-popup.html)
+
+### [Example: Cluster points + popup](./mapbox-point-cluster.html)
 
 ## Other examples
 Here's a list of all of the [Mapbox-hosted examples](https://docs.mapbox.com/mapbox-gl-js/example/).
