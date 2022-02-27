@@ -136,27 +136,31 @@ MMQGIS should already be installed as a QGIS plugin. If it's not, go to the plug
 
 If you haven't already reprojected your `esri_atl_zips` and `atl_res_permits` layers to be in the same projection, do that now.
 
-Next, we're going to calculate the hexbin short diagonal. Figure out how big you want your grids to be. When doing local analyses, often times I try to make my hexbins the average area of a city block.
+Next, we're going to calculate the hexbin short diagonal. Figure out how big you want your grids to be. When doing local analyses, often times I try to make my hexbins some multiple of the average area of a city block.
 
-For Atlanta, I've observed that many city blocks are between 400 - 600ft long. Let's say that the average is 500ft, which makes for a block with an area of 250,000 sq ft. 
+For Atlanta, I've observed that many city blocks are between 400 - 600ft long. Let's use a 5 block radius for our analysis today. That would be about 6,250,000 sq feet.
 
-[Use this calculator](https://rechneronline.de/pi/hexagon.php) to find the short diagonal length of a hexagon with an area of 250,000 sq ft. Enter 250000 into the Area (A) field and click Calculate.
+[Use this calculator](https://rechneronline.de/pi/hexagon.php) to find the short diagonal length of a hexagon with an area of 6,250,000 sq ft. Enter 6250000 into the Area (A) field and click Calculate.
 
-Note the result in the Short diagonal (d2) field: 537.
+![screenshot of the hexbin short diagonal calculator](./img/hexbin-short-diag-calc.png)
+
+Note the result in the Short diagonal (d2) field: 2686.
 
 Create the hexbin grid. Navigate to MMQGIS > Create > Create Grid Layer.
 
 Use these settings:
-- Geometry type = hexagons
-- Extent = Current window (make sure your zoom encompases all the `atl_res_permits` points)
-- Layer = `esri_atl_zips`
-- Units = Layer Units
-- Y Spacing = 537
-- Output File Name = the output here will be a layer of hexagons with no data attributes. So we want to call it something pretty general. I like to include the geographic extent of the grid and the y spacing I used to create it. Let’s put this one in a directory called atl-grids and call it atl-grid-537y. That way, if we need to adjust the size of our grid, we can save multiple grid files here and use them accordingly.
+- **Geometry type** = hexagons
+- **Extent** = Layer extent
+- **Layer** = `esri_atl_zips_proj6447`
+- **Units** = Layer Units
+- **Y Spacing** = 2686
+- **Output File Name** = the output here will be a layer of hexagons with no data attributes. So we want to call it something pretty general. I like to include the geographic extent of the grid and the y spacing I used to create it. Let’s put this one in a directory called **atl-grids** and call it **atl-grid-2686y**. That way, if we need to adjust the size of our grid, we can save multiple grid files here and use them accordingly. Make sure to change the file type to `.gpkg` at the bottom of the finder popup window.
 
 Click Apply.
 
 It may take a minute, but you should see a new layer of hexagons added to your map! Add an OpenStreet basemap in order to check whether each hexagon is roughly the size of a city block.
+
+ 
 
 Do a point in polygon analysis. Using the hexagons and the `atl_res_permits`, do a point in polygon analysis like we did above with the zip codes and the `atl_res_permits`.
 
