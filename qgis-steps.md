@@ -100,8 +100,8 @@ In order to see where the most new residences are being built in the city of Atl
 Go to Vector > Analysis Tools > Count Points in Polygon.
 
 Use the following settings:
-- **Polygons** = `esri_atl_zips`
-- **Points** = `atl_res_permits`
+- **Polygons** = `esri_atl_zips_proj6447`
+- **Points** = `atl_res_permits_proj6447`
 - **Count field name** = *permit_cnt*
 
 Click Run.
