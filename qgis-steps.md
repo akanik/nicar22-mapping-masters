@@ -10,7 +10,7 @@
 
 Open a new map in QGIS.
 
-Add the `esri_atl_zips.gpkg` vector file and `atl_res_permits.csv` delimited text file to the map.
+Add the `esri_atl_zips.gpkg` vector file and `atl_res_permits.csv` delimited text file (found in the GIS folder) to the map.
 
 Remember to tell QGIS that your delimited text file has point coordinates so that our permit data will appear as points.
 
