@@ -45,7 +45,7 @@ One consideration is visual. A layer’s CRS defines how it will appear on a 2D 
 
 A good way to figure out which of the 7,000+ projections to use for your specific area is to download some geographic files provided by your local government. For this session, I went to the [Atlanta Open Data portal](https://www.atlantaga.gov/government/mayor-s-office/executive-offices/office-of-innovation-delivery-and-performance/dataatlanta) and downloaded a geographic file. I opened that file in QGIS, double clicked the layer in the layers panel and looked under then Information tab. The project is listed by the CRS key.
 
-IMAGE OF ATL ZONING FILE INFORMATION TAB
+![IMAGE OF ATL ZONING FILE INFORMATION TAB](./img/atl-zoning-info-panel.png)
 
 Another consideration in choosing a CRS is alignment. If you are trying to do geospatial analyses with multiple layers, you need to make sure your layers are in the same projection. 
 
