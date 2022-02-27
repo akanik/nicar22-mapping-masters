@@ -151,7 +151,6 @@ Use these settings:
 - **Geometry type** = hexagons
 - **Units** = Project Units
 - **Extent** = Current window (make sure your map is zoomed to include all building permits)
-- **Layer** = `atl_res_permits_proj6447`
 - **Y Spacing** = 2686
 - **Output File Name** = the output here will be a layer of hexagons with no data attributes. So we want to call it something pretty general. I like to include the geographic extent of the grid and the y spacing I used to create it. Let’s put this one in a directory called **atl-grids** and call it **atl-grid-2686y**. That way, if we need to adjust the size of our grid, we can save multiple grid files here and use them accordingly. Make sure to change the file type to `.gpkg` at the bottom of the finder popup window.
 
