@@ -6,18 +6,6 @@
 
 [Intro to analysis in QGIS](https://docs.google.com/document/d/1LCjMGMst95GeBnMx-dmVQ66-XiaCB3uz6NrZzluYNMk/edit#heading=h.3zw8nxwawury), including styling layer, spatial joins and filtering shapes.
 
-## Adding files
-
-Open a new map in QGIS.
-
-Add the `esri_atl_zips.gpkg` vector file and `atl_res_permits.csv` delimited text file (found in the GIS folder) to the map.
-
-Remember to tell QGIS that your delimited text file has point coordinates so that our permit data will appear as points.
-
-> **_NOTE:_** Zip codes aren't the preferred geographic unit to work with, but sometimes that's how data come to us so we need to make the best of it. We're using the [ESRI Zip Codes](https://www.arcgis.com/home/item.html?id=8d2012a2016e484dafaac0451f9aea24) which come as a `.lyr` file. 
-
-> I've pulled out ATL zips for us to use during this tutorial, but if you want to grab your own city's zip code boundaries, [here are some instructions](https://gis.stackexchange.com/questions/34310/opening-lyr-file-via-rgdal-ogr) on how to convert that `.lyr` file into a `.gdb`. You should then be able to add the `.gdb` directory [using these instructions](https://gis.stackexchange.com/questions/26285/installing-file-geodatabase-gdb-support-in-qgis#:~:text=To%20open%20a%20geodatabase%20in,into%20your%20Table%20of%20Contents.). There is a column called **STATE** that you can use to filter your state's zip codes to get a more manageable file. Once you start joining data to your statewide zip codes, you should be able to filter out zips that aren't being used by the data. 
-
 ## Setting project and layer projections
 
 Projections are how we use two-dimensional space to talk about three-dimensional space. Polygons like county and state borders are three-dimensional, but we do our best to show them in two dimensions in print and online.
@@ -59,21 +47,26 @@ From QGIS docs:
 
 If you know which CRS you want your map to be projected with, you can set your projection at the map or project level. Then, all files you import will be "on the fly" projected using that CRS.
 
-To set that projection:
+Set your projects projection using the following steps:
 
-- Import your first file. 
+- Start a new QGIS project 
 - Go to Project > Properties in the main menu.
 - Select the CRS tab.
-- Select your desired CRS
+- In the Filter box, search for EPSG:6447
+- Select the NAD83(2011) / Georgia West (ftUS) CRS
 - Click OK.
 
-Now all files you add will be visually (on-the-fly) projected to that CRS. If you were to close QGIS and add those same files to a new map, you would find that the projection was project specific and did not stay with the individual geo files.
+Now all files you add to this mapping instance will be visually (on-the-fly) projected to that CRS. If you were to close QGIS and add those same files to a new map, you would find that the projection was project specific and did not stay with the individual geo files.
 
 ### Changing file projections
 
-If we do want to create layers with specifically-assigned projections, we can use the QGIS export features function to create those. 
+If we want to create layers with specifically-assigned projections, we can use the QGIS export features function to create those. 
 
-Let's export our `esri_atl_zips` and `atl_res_permits` layers with an Atlanta specific CRS: NAD_1983_2011_StatePlane_Georgia_West_FIPS_1002_Ft_US (EPSG: 6447). 
+Add the `esri_atl_zips.gpkg` vector file and `atl_res_permits.csv` delimited text file (found in the GIS folder) to the map.
+
+Remember to tell QGIS that your delimited text file has point coordinates so that our permit data will appear as points.
+
+Now let's export our `esri_atl_zips` and `atl_res_permits` layers with our Atlanta specific CRS: EPSG: 6447. 
 
 Right click your `esri_atl_zips` layer and select Export > Save features as. 
 
@@ -89,6 +82,10 @@ Keep other options as they are and click OK.
 Repeat the above with the `atl_res_permits` layer. Also save this as a geopackage and don't forget to add the CRS suffix.
 
 Remove the non-projected layers.
+
+> **_NOTE:_** Zip codes aren't the preferred geographic unit to work with, but sometimes that's how data come to us so we need to make the best of it. We're using the [ESRI Zip Codes](https://www.arcgis.com/home/item.html?id=8d2012a2016e484dafaac0451f9aea24) which come as a `.lyr` file. 
+
+> I've pulled out ATL zips for us to use during this tutorial, but if you want to grab your own city's zip code boundaries, [here are some instructions](https://gis.stackexchange.com/questions/34310/opening-lyr-file-via-rgdal-ogr) on how to convert that `.lyr` file into a `.gdb`. You should then be able to add the `.gdb` directory [using these instructions](https://gis.stackexchange.com/questions/26285/installing-file-geodatabase-gdb-support-in-qgis#:~:text=To%20open%20a%20geodatabase%20in,into%20your%20Table%20of%20Contents.). There is a column called **STATE** that you can use to filter your state's zip codes to get a more manageable file. Once you start joining data to your statewide zip codes, you should be able to filter out zips that aren't being used by the data. 
 
 ## Point in polygon
 
@@ -134,11 +131,13 @@ This is extremely helpful because many datasets have nothing to do with politica
 
 MMQGIS should already be installed as a QGIS plugin. If it's not, go to the plugins main menu, search for and install MMQGIS. 
 
-If you haven't already reprojected your `esri_atl_zips` and `atl_res_permits` layers to be in the same projection, do that now.
+Both your project and your individual layers should be projected using the EPSG:6447 CRS. If you haven't done that alreayd, do it now.
+
+First, let's make sure the zoom of our map is set correctly because we're going to use the visible window extent to tell QGIS how many hexbins to create.
 
 Next, we're going to calculate the hexbin short diagonal. Figure out how big you want your grids to be. When doing local analyses, often times I try to make my hexbins some multiple of the average area of a city block.
 
-For Atlanta, I've observed that many city blocks are between 400 - 600ft long. Let's use a 5 block radius for our analysis today. That would be about 6,250,000 sq feet.
+> For Atlanta, I've observed that many city blocks are between 400 - 600ft long. Let's use a 5 block radius for our analysis today. That would be about 6,250,000 sq feet.
 
 [Use this calculator](https://rechneronline.de/pi/hexagon.php) to find the short diagonal length of a hexagon with an area of 6,250,000 sq ft. Enter 6250000 into the Area (A) field and click Calculate.
 
@@ -150,17 +149,17 @@ Create the hexbin grid. Navigate to MMQGIS > Create > Create Grid Layer.
 
 Use these settings:
 - **Geometry type** = hexagons
-- **Extent** = Layer extent
-- **Layer** = `esri_atl_zips_proj6447`
-- **Units** = Layer Units
+- **Units** = Project Units
+- **Extent** = Current window (make sure your map is zoomed to include all building permits)
+- **Layer** = `atl_res_permits_proj6447`
 - **Y Spacing** = 2686
 - **Output File Name** = the output here will be a layer of hexagons with no data attributes. So we want to call it something pretty general. I like to include the geographic extent of the grid and the y spacing I used to create it. Let’s put this one in a directory called **atl-grids** and call it **atl-grid-2686y**. That way, if we need to adjust the size of our grid, we can save multiple grid files here and use them accordingly. Make sure to change the file type to `.gpkg` at the bottom of the finder popup window.
 
 Click Apply.
 
-It may take a minute, but you should see a new layer of hexagons added to your map! Add an OpenStreet basemap in order to check whether each hexagon is roughly the size of a city block.
+![screenshot of the hexbin creator](./img/hexbin-creator.png)
 
- 
+It may take a minute, but you should see a new layer of hexagons added to your map! Add an OpenStreet basemap in order to check whether each hexagon is roughly the size of a city block.
 
 Do a point in polygon analysis. Using the hexagons and the `atl_res_permits`, do a point in polygon analysis like we did above with the zip codes and the `atl_res_permits`.
 
@@ -173,20 +172,20 @@ QGIS not only gives you the tools to perform advanced geographic processes, it a
 Open the layer Symbology tab. Double click your point-in-polygon hexagon layer and select the Symbology tab from the left sidebar.
 
 We can select from a variety of different symbology types:
-- Single Symbol = a uniform color or fill, line width and opacity for all layer features
-- Categorized = style features based on a category column. For example: if you had a political party column that contained values of either republican, democrat, libertarian or other, you could use categorized styling to assign specific styles to each category. 
-- Graduated = style features based on a number column. This style method allows you to group or bin number values so you can have specific styles for value ranges.
-- Rule-based = style features based on specific rules. This style method allows you to use rules, usually based on feature attribute values, to style individual features.
+- **Single Symbol** = a uniform color or fill, line width and opacity for all layer features
+- **Categorized** = style features based on a category column. For example: if you had a political party column that contained values of either republican, democrat, libertarian or other, you could use categorized styling to assign specific styles to each category. 
+- **Graduated** = style features based on a number column. This style method allows you to group or bin number values so you can have specific styles for value ranges.
+- **Rule-based** = style features based on specific rules. This style method allows you to use rules, usually based on feature attribute values, to style individual features.
 
 We will be using Graduated styles today.
 
 Choose Graduated from the dropdown at the top of the Symbology window.
 
 Use these settings:
-- Value = **permit_cnt**
-- Color ramp = Blues
-- Mode = Pretty breaks
-- Classes = 5
+- **Value** = permit_cnt
+- **Color ramp** = Blues
+- **Mode** = Pretty breaks
+- **Classes** = 5
 
 Click Classify.
 
@@ -231,9 +230,9 @@ You should now see that all of the hexbins with permits have been selected!
 Save selection. Right click your selected point-in-polygon hexbin layer and select Export > Save selected features as.
 
 Use the following settings:
-- Format: GeoJSON
-- File name: use the 3 dots to navigated to our project folder and save as `atl-hexbin-res-permits`
-- CRS: EPSG:4326 - WGS 84
-- Save only selected features: should be checked
+- **Format**: GeoJSON
+- **File name**: use the 3 dots to navigated to our project folder and save as `atl-hexbin-res-permits`
+- **CRS**: EPSG:4326 - WGS 84
+- **Save only selected features**: should be checked
 
 Click OK.
