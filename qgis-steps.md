@@ -152,7 +152,7 @@ Use these settings:
 - **Units** = Project Units
 - **Extent** = Current window (make sure your map is zoomed to include all building permits)
 - **Y Spacing** = 2686
-- **Output File Name** = the output here will be a layer of hexagons with no data attributes. So we want to call it something pretty general. I like to include the geographic extent of the grid and the y spacing I used to create it. Let’s put this one in a directory called **atl-grids** and call it **atl-grid-2686y**. That way, if we need to adjust the size of our grid, we can save multiple grid files here and use them accordingly. Make sure to change the file type to `.gpkg` at the bottom of the finder popup window.
+- **Output File Name** = the output here will be a layer of hexagons with no data attributes. So we want to call it something pretty general. I like to include the geographic extent of the grid and the y spacing I used to create it. Let’s put this one in a directory called **atl-grids** and call it **atl-grid-2686y**. That way, if we need to adjust the size of our grid, we can save multiple grid files here and use them accordingly.
 
 Click Apply.
 
@@ -213,7 +213,7 @@ Upper bound IS included
 When you’re exporting QGIS data for online display, usually you are exporting individual layers in order to import them into an online program like Mapbox or Carto. 
 
 There are a couple of important considerations for exporting files for online display:
-- Projection: depending on the service that you’re uploading your files into, you’ll want to make sure you export your layers with the appropriate project. Mapbox likes to receive files that are projected in the EPSG:4326 - WGS 84
+- Projection: depending on the service that you’re uploading your files into, you’ll want to make sure you export your layers with the appropriate project. Mapbox likes to receive files that are projected in EPSG:3857
 - Scope/size: only export features that you will want to display on your online map. For example, we wouldn’t want to export all of the hexbins that we created. We would want to filter out hexbins with fewer than 1 residential permit so that we’re exporting fewer features. Importing larger files into online mapping programs will both cost more and make your online maps load more slowly.
 
 ### Steps:
@@ -231,7 +231,7 @@ Save selection. Right click your selected point-in-polygon hexbin layer and sele
 Use the following settings:
 - **Format**: GeoJSON
 - **File name**: use the 3 dots to navigated to our project folder and save as `atl-hexbin-res-permits`
-- **CRS**: EPSG:4326 - WGS 84
+- **CRS**: EPSG:3857
 - **Save only selected features**: should be checked
 
 Click OK.
