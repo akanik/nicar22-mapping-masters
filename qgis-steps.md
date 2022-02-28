@@ -216,9 +216,9 @@ There are a couple of important considerations for exporting files for online di
 - Projection: depending on the service that you’re uploading your files into, you’ll want to make sure you export your layers with the appropriate project. Mapbox likes to receive files that are projected in EPSG:3857
 - Scope/size: only export features that you will want to display on your online map. For example, we wouldn’t want to export all of the hexbins that we created. We would want to filter out hexbins with fewer than 1 residential permit so that we’re exporting fewer features. Importing larger files into online mapping programs will both cost more and make your online maps load more slowly.
 
-### Steps:
+### Filter out hexbins with zero permits and save for Mapbox
 
-Filter out hexbins with zero permits. Open the your point-in-polygon hexbin layer’s attribute table and click the "Select features using an expression" button. 
+Open the your point-in-polygon hexbin layer’s attribute table and click the "Select features using an expression" button. 
 
 We are going to be filtering out bins with fewer than 1 permit so our expression will read as follows:  "permit_cnt" > 0.
 
@@ -232,8 +232,59 @@ Save selection. Right click your selected point-in-polygon hexbin layer and sele
 
 Use the following settings:
 - **Format**: GeoJSON
-- **File name**: use the 3 dots to navigated to our project folder and save as `atl-hexbin-res-permits`
+- **File name**: use the 3 dots to navigated to our project folder and save as `atl-hexbin-res-permits-mapbox`
 - **CRS**: EPSG:3857
 - **Save only selected features**: should be checked
 
 Click OK.
+
+### Filter out unnecessary permit columns and save for Mapbox
+
+Open the `atl_res_permits_proj6447` attribute table. 
+
+Click the "toggle editing mode" (pencil) icon in the popups menu. It should be the first icon.
+
+Click the "delete field" (blue square with red column) icon in the menu.
+
+Select the following fields:
+- Record Number
+- Record Type
+- Permit Name
+- Status
+- Short Notes
+- Accuracy Score
+- Accuracy Type
+- Number
+- Street
+- Unit Type
+- Unit Number
+- City
+- State
+- County
+- Zip
+- Country
+- Source
+
+Click OK.
+
+You should be left with the following fields:
+- fid
+- Date
+- Address
+- Description
+- Latitude
+- Longitude
+
+Click the "toggle editing mode" icon again and click Save when QGIS asks about saving layer changed.
+
+Exit out of the attribute table.
+
+Save your file for Mapbox: Right click your permit layer and select Export > Save features as.
+
+Use the following settings:
+- **Format**: GeoJSON
+- **File name**: use the 3 dots to navigated to our project folder and save as `atl-res-permits-mapbox`
+- **CRS**: EPSG:3857
+
+Click OK.
+
