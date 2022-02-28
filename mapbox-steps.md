@@ -57,7 +57,7 @@ Read more about [using Style iframes here](https://docs.mapbox.com/help/glossary
 ## Using Github to host your maps
 https://pages.github.com/
 
-## Mapbox examples
+## Uploading and styling tilesets and creating Styles in Mapbox
 We're going to use the data we manipulated in QGIS to make a few Mapbox maps!
 
 I order to view the html code we're about to work with, you'll need to do the following:
@@ -68,22 +68,85 @@ I order to view the html code we're about to work with, you'll need to do the fo
 
 We will be opening the following 3 html files using a code editor.
 
-### [Example: Basic point locator + popup](./mapbox-point-popup.html)
+### Example: Basic point locator + popup
 First we need to upload our building permit points geojson as a Mapbox Tileset.
 
-Go to [Mapbox > Tilesets](https://studio.mapbox.com/tilesets/), click **New Tileset** and upload the point geojson you created from the QGIS portion of this class. If you weren't able to create that file or your file keeps erroring out for some reason (likely because you didn't project it correctly), you can use [the backup geojson](#) I've created for just such an eventuality!
+Go to [Mapbox > Tilesets](https://studio.mapbox.com/tilesets/), click **New Tileset** and upload the building permit point geojson you created from the QGIS portion of this class. If you weren't able to create that file or your file keeps erroring out for some reason (likely because you didn't project it correctly), you can use [this backup geojson](./GIS/backups/atl-res-permits-mapbox.geojson) I've created for just such an occasion!
 
 Once your building permits file has uploaded, take note of the Tileset ID.
+
+![screenshot of successful tileset upload](./img/mapbox-tileset-upload.png)
 
 Now we're going to create a style.
 
 Got to [Mapbox > Styles](https://studio.mapbox.com/) and click **New Style**. Choose a template and a variation that suite your fancy. I would recommend Monochrome Light because it will be easier to see our points and other layers. Click **Customize**.
 
+Be sure to rename your Style so that it's specific to the project we're working on. Since our project is about ATL building permits, let's call it `ATL-building-permits`.
 
+Here are a few Mapbox-provided helper comments:
 
+![screenshot of mapbox provided helper boxes](./img/mapbox-style-help.png)
+
+On the left sidebar, click on Layers. Then click the grey + button to add a new layer. 
+
+On the New Layer popout, use the Source select box to search for your recently uploaded tileset. Paste the Tileset ID into the search box that appears.
+
+Navigate on the map to where your data should appear.
+
+![screenshot of unstyled tileset on a mapbox style](./img/mapbox-unstyled-tileset.png)
+
+While still selected on the Layers tab in the sidebar, click on your newly uploaded layer. Yet another sidebar level will popout. 
+
+On the `Select Data` tab of that 3rd tier popout sidebar, you will find:
+- Source: where to pull the data from. This is where we found our uploaded Tileset.
+- Type: what type of geography is this data. Different data types have different styling options.
+- Filter: remove unwanted features from appearing. You should have already done this in QGIS though
+- Zoom extent: at which zoom levels will this data be visible
+
+Our tileset should have uploaded as type = Circle.
+
+Because we've uploaded a Circle tileset, on the `Style` tab, you will find:
+- Radius
+- Color
+- Blur
+- Opacity
+- Stroke color, width and opacity
+- Translate options
+- Pitch options
+
+Let's style our circle radii across zoom levels.
+
+- Click Radius > Style across zoom range.
+- Rate of change = linear
+- Zoom 0 = 1px
+- Zoom 22 = 10px
+- Add a stop where the Zoom level = 11 and the pixels = 3
+
+Let's change our circle color and opacity so our circles look more appealing.
+
+- Click Color and choose a color 
+- Click Opacity and drop it to .5
+- Click Stroke Color and set it to black or whatever goes with your color
+- Click Stroke Width and set it to 1. Or maybe you also want to style that across zoom ranges!
+- Maybe set the Stroke Opacity as well
+
+![screenshot of styled circles in Mapbox](./img/mapbox-circle-styles.png)
+
+Once you're happy with how these circles look, head over to Publish button and publish your Style.
+
+Click Share and copy the Style URL and Access Token. We will need these in our HTML.
+
+Now let's head over to our [Basic point locator + popup](./mapbox-point-popup.html) example HTML and open it using a code editor. These computers come equipped with Sublime, VS Code and Atom. Use what you know and if you don't know any, I suggest you use VS Code.
 
 
 ### [Example: Layer choropleth + popup](./mapbox-polygon-popup.html)
+
+Let's go to the Style tab and click Color. We're going to style this layer's c
+
+**Styling across zoom ranges**
+
+**Styling across data ranges**
+
 
 ### [Example: Cluster points + popup](./mapbox-point-cluster.html)
 
