@@ -64,7 +64,7 @@ I order to view the html code we're about to work with, you'll need to do the fo
 - open your computer's terminal
 - type `cd [path to this classes folder]`
 - once in the correct folder, type `python -m http.server`
-- go to `localhost:8000/mapbox-point-popup.html` in your browser and you should see a map!
+- go to `localhost:8000/examples/mapbox-point-popup.html` in your browser and you should see a blank white page. We'll work on making that a map now.
 
 We will be opening the following 3 html files using a code editor.
 
