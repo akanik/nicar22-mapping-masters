@@ -222,6 +222,8 @@ Filter out hexbins with zero permits. Open the your point-in-polygon hexbin laye
 
 We are going to be filtering out bins with fewer than 1 permit so our expression will read as follows:  "permit_cnt" > 0.
 
+![screenshot of the layer filter process](./img/hexbin-filter.png)
+
 Click Select features.
 
 You should now see that all of the hexbins with permits have been selected!
