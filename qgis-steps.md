@@ -213,7 +213,7 @@ Upper bound IS included
 When you’re exporting QGIS data for online display, usually you are exporting individual layers in order to import them into an online program like Mapbox or Carto. 
 
 There are a couple of important considerations for exporting files for online display:
-- Projection: depending on the service that you’re uploading your files into, you’ll want to make sure you export your layers with the appropriate project. Mapbox likes to receive files that are projected in EPSG:3857
+- Projection: depending on the service that you’re uploading your files into, you’ll want to make sure you export your layers with the appropriate project. Mapbox likes to receive files that are projected in EPSG:4326
 - Scope/size: only export features that you will want to display on your online map. For example, we wouldn’t want to export all of the hexbins that we created. We would want to filter out hexbins with fewer than 1 residential permit so that we’re exporting fewer features. Importing larger files into online mapping programs will both cost more and make your online maps load more slowly.
 
 ### Filter out hexbins with zero permits and save for Mapbox
@@ -233,7 +233,7 @@ Save selection. Right click your selected point-in-polygon hexbin layer and sele
 Use the following settings:
 - **Format**: GeoJSON
 - **File name**: use the 3 dots to navigated to our project folder and save as `atl-hexbin-res-permits-mapbox`
-- **CRS**: EPSG:3857
+- **CRS**: EPSG:4326
 - **Save only selected features**: should be checked
 
 Click OK.
@@ -284,7 +284,7 @@ Save your file for Mapbox: Right click your permit layer and select Export > Sav
 Use the following settings:
 - **Format**: GeoJSON
 - **File name**: use the 3 dots to navigated to our project folder and save as `atl-res-permits-mapbox`
-- **CRS**: EPSG:3857
+- **CRS**: EPSG:4326
 
 Click OK.
 
