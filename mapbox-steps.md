@@ -63,13 +63,12 @@ https://pages.github.com/
 ## Uploading and styling tilesets and creating Styles in Mapbox
 We're going to use the data we manipulated in QGIS to make a few Mapbox maps!
 
-I order to view the html code we're about to work with, you'll need to do the following:
+In order to view the results of html code we're about to work with, you'll need to do the following:
 - open your computer's terminal
-- type `cd [path to this classes folder]`
+- type `cd [path to this class's folder]`
 - once in the correct folder, type `python -m http.server`
-- go to `localhost:8000/examples/mapbox-point-popup.html` in your browser and you should see a blank white page. We'll work on making that a map now.
+- go to `localhost:8000/examples/mapbox-point-popup.html` in your browser and you should see a blank white page. We'll work on making that a map now!
 
-We will be opening the following 3 html files using a code editor.
 
 ### Example: Basic point locator + popup
 First we need to upload our building permit points geojson as a Mapbox Tileset.
@@ -80,9 +79,9 @@ Once your building permits file has uploaded, take note of the Tileset ID.
 
 ![screenshot of successful tileset upload](./img/mapbox-tileset-upload.png)
 
-Now we're going to create a style.
+Now we're going to create a Style.
 
-Got to [Mapbox > Styles](https://studio.mapbox.com/) and click **New Style**. Choose a template and a variation that suite your fancy. I would recommend Monochrome Light because it will be easier to see our points and other layers. Click **Customize**.
+Got to [Mapbox > Styles](https://studio.mapbox.com/) and click **New Style**. Choose a template and a variation that suite your fancy. I would recommend Monochrome Light or Dark because it will be easier to see our points and other layers. Click **Customize**.
 
 Be sure to rename your Style so that it's specific to the project we're working on. Since our project is about ATL building permits, let's call it `ATL-building-permits`.
 
@@ -101,10 +100,10 @@ Navigate on the map to where your data should appear.
 While still selected on the Layers tab in the sidebar, click on your newly uploaded layer. Yet another sidebar level will popout. 
 
 On the `Select Data` tab of that 3rd tier popout sidebar, you will find:
-- Source: where to pull the data from. This is where we found our uploaded Tileset.
-- Type: what type of geography is this data. Different data types have different styling options.
-- Filter: remove unwanted features from appearing. You should have already done this in QGIS though
-- Zoom extent: at which zoom levels will this data be visible
+- **Source:** where to pull the data from. This is where we found our uploaded Tileset.
+- **Type:** what type of geography is this data. Different data types have different styling options.
+- **Filter:** remove unwanted features from appearing. You should have already done this in QGIS though
+- **Zoom extent:** zoom levels at which this data will be visible
 
 Our tileset should have uploaded as type = Circle.
 
@@ -142,16 +141,15 @@ Click Share and copy the Style URL and Access Token. We will need these in our H
 Now let's head over to our [Basic point locator + popup](./mapbox-point-popup.html) example HTML and open it using a code editor. These computers come equipped with Sublime, VS Code and Atom. Use what you know and if you don't know any, I suggest you use VS Code.
 
 
+### [Example: Cluster points + popup](./mapbox-point-cluster.html)
+Unfortunately, for reasons I don't really understand, you cannot cluster vector tilesets. SIGH. But that's ok! Now you know. And this will give us a chance to work with raw geojson as a source.
+
+Open the [Cluster points + popup](./mapbox-point-cluster.html) example HTML with your code editor.
+
+In your browser window, navigate to `localhost:8000/examples/mapbox-point-cluster.html`
+
 ### [Example: Layer choropleth + popup](./mapbox-polygon-popup.html)
 
-Let's go to the Style tab and click Color. We're going to style this layer's c
-
-**Styling across zoom ranges**
-
-**Styling across data ranges**
-
-
-### [Example: Cluster points + popup](./mapbox-point-cluster.html)
 
 ## Other examples
 Here's a list of all of the [Mapbox-hosted examples](https://docs.mapbox.com/mapbox-gl-js/example/).
