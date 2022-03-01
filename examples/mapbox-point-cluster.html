@@ -20,7 +20,8 @@ body { margin: 0; padding: 0; }
         container: 'map',
         style: 'mapbox://styles/mapbox/dark-v10', //this is a generic style
         center: [-84.4178, 33.7619],
-        zoom: 10
+        zoom: 10,
+        maxZoom: 14
     });
 
     map.on('load', () => {
@@ -29,10 +30,11 @@ body { margin: 0; padding: 0; }
         // add the point_count property to your source data.
         map.addSource('permits', {
             type: 'geojson',
-            //data: './GIS/atl-res-permits-mapbox.geojson',
-            data: 'path_to_your_permit_point_geojson',
+            data: './GIS/atl-res-permits-mapbox.geojson',
+            //data: 'path_to_your_permit_point_geojson',
+            maxzoom:14,
             cluster: true,
-            clusterMaxZoom: 16, // Max zoom to cluster points on
+            clusterMaxZoom: 12, // Max zoom to cluster points on. This should be less than your map and source maxZoom
             clusterRadius: 40 // Radius of each cluster when clustering points (defaults to 50)
         });
 
