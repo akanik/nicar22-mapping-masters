@@ -142,7 +142,7 @@ Now let's head over to our [Basic point locator + popup](./mapbox-point-popup.ht
 
 
 ### [Example: Cluster points + popup](./mapbox-point-cluster.html)
-Unfortunately, for reasons I don't really understand, you cannot cluster vector tilesets. SIGH. But that's ok! Now you know. And this will give us a chance to work with raw geojson as a source.
+Unfortunately, for [reasons I don't really understand](https://github.com/mapbox/mapbox-gl-js/issues/5856), you cannot cluster vector tilesets. SIGH. But that's ok! Now you know. And this will give us a chance to work with raw geojson as a source.
 
 Open the [Cluster points + popup](./mapbox-point-cluster.html) example HTML with your code editor.
 
