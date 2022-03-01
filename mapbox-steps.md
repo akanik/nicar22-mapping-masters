@@ -48,7 +48,7 @@ However, there are some things you cannot do with vector tiles. We will explore 
 See more options on this [trouble-shooting guide](https://docs.mapbox.com/help/troubleshooting/uploads/#troubleshooting)
 
 ### Styles
-Styles are a combination of basemaps and tilesets. By creating and importing new styles, you can change how many basemap features are visible and at which zoom levels they are visible. You can also tilesets to a style and leverage GUI layer styling. 
+Styles are a combination of basemaps and tilesets. By creating and importing new styles, you can change how many basemap features are visible and at which zoom levels they are visible. You can also add tilesets to a style and leverage GUI layer styling. 
 
 
 ## What you can do without code
