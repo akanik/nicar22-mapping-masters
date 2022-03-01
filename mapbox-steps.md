@@ -35,14 +35,17 @@ Your self-hosted data will also be converted into vector tiles, but it will be a
 
 Another benefit is that you can do more non-code styling of your data using Mapbox Styles.
 
+However, there are some things you cannot do with vector tiles. We will explore such limitations in our "Clustering" HTML example below.
+
 **[Tips](https://docs.mapbox.com/help/troubleshooting/working-with-large-geojson-data/) for reducing the size of your geojson files:**
-- remove unnecessary properties/variables
-- set the `maxZoom` level on your geoJSON source so it's not larger than you need
-- if possible, use point clustering for point locator maps. If you can't cluster, allow points to overlap by setting the source `layout` property `icon-allow-overlap` to `true`
-- store geoJSON files in a URL rather than loading them as a variable/Object
-- Convert multipart features to singlepart features, if possible
-- Simplify overly-complex shapes using [mapshaper](https://mapshaper.org/)
-- See more options on this [trouble-shooting guide](https://docs.mapbox.com/help/troubleshooting/uploads/#troubleshooting)
+- IN QGIS: remove unnecessary properties/variables
+- IN QGIS: Convert multipart features to singlepart features, if possible
+- IN QGIS (or [mapshaper](https://mapshaper.org/)): Simplify overly-complex shapes
+- IN MAPBOX: set the `maxZoom` level on your geoJSON source so it's not larger than you need
+- IN MAPBOX: if possible, use point clustering for point locator maps. If you can't cluster, allow points to overlap by setting the source `layout` property `icon-allow-overlap` to `true`
+- IN MAPBOX: store geoJSON files in a URL rather than loading them as a variable/Object
+
+See more options on this [trouble-shooting guide](https://docs.mapbox.com/help/troubleshooting/uploads/#troubleshooting)
 
 ### Styles
 Styles are a combination of basemaps and tilesets. By creating and importing new styles, you can change how many basemap features are visible and at which zoom levels they are visible. You can also tilesets to a style and leverage GUI layer styling. 
