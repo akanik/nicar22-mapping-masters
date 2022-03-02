@@ -154,6 +154,12 @@ Using the same Tileset --> Style method we used with our building permit points,
 
 You'll notice that the hexbins Tileset will load into a Style as a type of Fill. Fill type vector files have different style options, as you'll notice in the Style tab of the layer popout.
 
+With fill features, I like to use the **Style across zoom range** option so that when I'm zoomed out, density patterns are clear and when I'm zoomed in, you can still see streets and basemaps features underneath the fill features. To accomplish this, I will add different opacity values for different zoom levels.
+
+By zooming in and out and taking note of the zoom level in the URL, I can see that I would like the user to be able to see PATTERNS (full opacity) at a zoom level of 9, but by the time they zoom in to level 11, they need to start seeing the basemap streets (.5 opacity).
+
+![mapbox feature opacity on zoom level](./img/mapbox-hexbin-zoom-range.png)
+
 Once you have your styles set as you like them and publish your map, open the [Layer choropleth + popup](./examples/mapbox-polygon-popup.html) example file in your code editor.
 
 ## Other examples
