@@ -77,8 +77,6 @@ Go to [Mapbox > Tilesets](https://studio.mapbox.com/tilesets/), click **New Tile
 
 Once your building permits file has uploaded, take note of the Tileset ID.
 
-![screenshot of successful tileset upload](./img/mapbox-tileset-upload.png)
-
 Now we're going to create a Style.
 
 Got to [Mapbox > Styles](https://studio.mapbox.com/) and click **New Style**. Choose a template and a variation that suite your fancy. I would recommend Monochrome Light or Dark because it will be easier to see our points and other layers. Click **Customize**.
