@@ -19,9 +19,7 @@ mapbox-polygon-popup.html
       h3 {
         margin: 10px;
         font-size: 18px;
-      }
-      h3 {
-        font-size: 16px;
+        text-decoration: underline;
       }
       p {
         margin: 10px;
@@ -44,43 +42,52 @@ mapbox-polygon-popup.html
       }
       #features {
         top: 0;
-        height: 100px;
+        height: 150px;
         margin-top: 20px;
         width: 250px;
       }
-      #legend {
-        padding: 10px;
+      #gradient {
+        padding: 0px;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         line-height: 18px;
-        height: 150px;
-        margin-bottom: 40px;
-        width: 100px;
+        height: 20px;
+        width: 90%;
+        margin:0 auto;
       }
-      .legend-key {
-        display: inline-block;
-        border-radius: 20%;
-        width: 10px;
-        height: 10px;
-        margin-right: 5px;
+      #gradient-text{
+        display: flex;
+        justify-content: space-between;
       }
+      #gradient-text div{
+        padding:2px 5px;
+        font-size: .75em;
+      }
+      
     </style>
   </head>
   <body>
     <div id="map"></div>
     <div class="map-overlay" id="features">
-      <h2>US population density</h2>
-      <div id="pd"><p>Hover over a state!</p></div>
+      <h2>Atlanta building permits</h2>
+      <div id="gradient-text">
+        <div id="gradient-start"></div>
+        <div id="gradient-stop"></div>
+      </div>
+      <div id="gradient"></div>
+      <div id="pd"><p>Hover over a hexbin to see the number of building permits in that area</p></div>
     </div>
-    <div class="map-overlay" id="legend"></div>
 
     <script>
       // define access token
-      mapboxgl.accessToken = 'pk.eyJ1IjoiYWthbmlrIiwiYSI6IjQ2M2Y5OGI2Y2MzMGI2MmRmMGU4NjNhNDg3Mjc3ZjkwIn0.a1NvEywRiZazvyvrYCQSoA';
+      mapboxgl.accessToken = 'your_ACCESS_TOKEN_goes_here'; // Paste your ACCESS_TOKEN here
 
       // create map
       const map = new mapboxgl.Map({
         container: 'map', // container id
-        style: 'mapbox://styles/examples/cjgioozof002u2sr5k7t14dim' // map style URL from Mapbox Studio
+        style: 'your_style_URL_goes_here', // Paste your style URL here
+        center: [-84.4178, 33.7619],
+        zoom: 10,
+        maxZoom: 14
       });
 
       // wait for map to load before adjusting it
@@ -88,59 +95,34 @@ mapbox-polygon-popup.html
         // make a pointer cursor
         map.getCanvas().style.cursor = 'default';
 
-        // set map bounds to the continental US
-        map.fitBounds([
-          [-133.2421875, 16.972741],
-          [-47.63671875, 52.696361]
-        ]);
-
-        // define layer names
+        // Here is where we define our gradient start/stop color and text values
         const layers = [
-          '0-10',
-          '10-20',
-          '20-50',
-          '50-100',
-          '100-200',
-          '200-500',
-          '500-1000',
-          '1000+'
+          '1',
+          '139',
         ];
         const colors = [
-          '#FFEDA0',
-          '#FED976',
-          '#FEB24C',
-          '#FD8D3C',
-          '#FC4E2A',
-          '#E31A1C',
-          '#BD0026',
-          '#800026'
+          '#eff3ff',
+          '#2171b5',
         ];
 
-        // create legend
-        const legend = document.getElementById('legend');
+        // create the gradient legend from the above start/stop values
+        const legend = document.getElementById('gradient');
+        legend.style.backgroundImage = `linear-gradient(to right,` + colors[0] + `, ` + colors[1] + `)`;
 
-        layers.forEach((layer, i) => {
-          const color = colors[i];
-          const item = document.createElement('div');
-          const key = document.createElement('span');
-          key.className = 'legend-key';
-          key.style.backgroundColor = color;
-
-          const value = document.createElement('span');
-          value.innerHTML = `${layer}`;
-          item.appendChild(key);
-          item.appendChild(value);
-          legend.appendChild(item);
-        });
+        const legendStart = document.getElementById('gradient-start');
+        legendStart.innerHTML = layers[0]
+        const legendStop = document.getElementById('gradient-stop');
+        legendStop.innerHTML = layers[1]
+        
 
         // change info window on hover
         map.on('mousemove', (event) => {
-          const states = map.queryRenderedFeatures(event.point, {
-            layers: ['statedata']
+          const hexbins = map.queryRenderedFeatures(event.point, {
+            layers: ['at-hexbin-res-permits-mapbox-4397rg'] // add your hexbin tileset name here
           });
-          document.getElementById('pd').innerHTML = states.length
-            ? `<h3>${states[0].properties.name}</h3><p><strong><em>${states[0].properties.density}</strong> people per square mile</em></p>`
-            : `<p>Hover over a state!</p>`;
+          document.getElementById('pd').innerHTML = hexbins.length
+            ? `<p>There are <strong>${hexbins[0].properties.permit_cnt} permits</strong> in this area</p>`
+            : `<p>Hover over a hexbin!</p>`;
         });
       });
     </script>

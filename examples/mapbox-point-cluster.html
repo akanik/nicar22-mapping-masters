@@ -15,26 +15,25 @@ body { margin: 0; padding: 0; }
 <div id="map"></div>
 
 <script>
-	mapboxgl.accessToken = 'pk.eyJ1IjoiYWthbmlrIiwiYSI6IjQ2M2Y5OGI2Y2MzMGI2MmRmMGU4NjNhNDg3Mjc3ZjkwIn0.a1NvEywRiZazvyvrYCQSoA';
+	mapboxgl.accessToken = 'your_ACCESS_TOKEN_goes_here'; // Paste your ACCESS_TOKEN here
     const map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/dark-v10', //this is a generic style
+        style: 'mapbox://styles/mapbox/dark-v10', //this is a generic style, we will NOT be replacing this
         center: [-84.4178, 33.7619],
         zoom: 10,
         maxZoom: 14
     });
 
     map.on('load', () => {
-        // Add a new source from our uploaded building permit tileset data and
+        // Add a new source from our building permit geojson and
         // set the 'cluster' option to true. GL-JS will
         // add the point_count property to your source data.
         map.addSource('permits', {
             type: 'geojson',
-            data: './GIS/atl-res-permits-mapbox.geojson',
-            //data: 'path_to_your_permit_point_geojson',
+            data: 'path_to_your_permit_point_geojson',
             maxzoom:14,
             cluster: true,
-            clusterMaxZoom: 12, // Max zoom to cluster points on. This should be less than your map and source maxZoom
+            clusterMaxZoom: 12, // Max zoom to cluster points on. This should be less than your map maxZoom
             clusterRadius: 40 // Radius of each cluster when clustering points (defaults to 50)
         });
 
@@ -120,7 +119,9 @@ body { margin: 0; padding: 0; }
         // the location of the feature, with
         // description HTML from its properties.
         map.on('click', 'unclustered-point', (e) => {
+            // this is where the popup will appear
             const coordinates = e.features[0].geometry.coordinates.slice();
+            
             // Let's grab a few values from our features to show in the popup
             // You would change these if using other data
             const address = e.features[0].properties.Address;
