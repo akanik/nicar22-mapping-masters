@@ -30,7 +30,9 @@ body { margin: 0; padding: 0; }
         // add the point_count property to your source data.
         map.addSource('permits', {
             type: 'geojson',
-            data: 'path_to_your_permit_point_geojson',
+            data: 'path_to_your_permit_point_geojson', 
+            // if you weren't able to create a building permits point geojson, 
+            // you can use the one in examples/GIS/atl-res-permits-mapbox.geojson
             maxzoom:14,
             cluster: true,
             clusterMaxZoom: 12, // Max zoom to cluster points on. This should be less than your map maxZoom
