@@ -73,7 +73,7 @@ In order to view the results of html code we're about to work with, you'll need 
 ### Example: Basic point locator + popup
 First we need to upload our building permit points geojson as a Mapbox Tileset.
 
-Go to [Mapbox > Tilesets](https://studio.mapbox.com/tilesets/), click **New Tileset** and upload the building permit point geojson you created from the QGIS portion of this class. If you weren't able to create that file or your file keeps erroring out for some reason (likely because you didn't project it correctly), you can use [this backup geojson](./GIS/backups/atl-res-permits-mapbox.geojson) I've created for just such an occasion!
+Go to [Mapbox > Tilesets](https://studio.mapbox.com/tilesets/), click **New Tileset** and upload the building permit point geojson you created from the QGIS portion of this class. If you weren't able to create that file or your file upload efforts keeps erroring out for some reason (likely because you didn't project it correctly), you can use [this backup geojson](./GIS/backups/atl-res-permits-mapbox.geojson) I've created for just such an occasion!
 
 Once your building permits file has uploaded, take note of the Tileset ID.
 
@@ -149,6 +149,8 @@ In your browser window, navigate to `localhost:8000/examples/mapbox-point-cluste
 
 ### [Example: Layer choropleth + popup](./examples/mapbox-polygon-popup.html)
 Using the same Tileset --> Style method we used with our building permit points, let's upload our building permit hexbins, load them into a Style and then style the Tileset according to your preferences. I would suggest using the same sort of data-driven color scheme we used in the point example. 
+
+If you weren't able to create that file or your file upload efforts keeps erroring out for some reason (likely because you didn't project it correctly), you can use [this backup geojson](./GIS/backups/at-hexbin-res-permits-mapbox.geojson) I've created for just such an occasion!
 
 You'll notice that the hexbins Tileset will load into a Style as a type of Fill. Fill type vector files have different style options, as you'll notice in the Style tab of the layer popout.
 
