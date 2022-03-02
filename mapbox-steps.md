@@ -138,18 +138,23 @@ Once you're happy with how these circles look, head over to Publish button and p
 
 Click Share and copy the Style URL and Access Token. We will need these in our HTML.
 
-Now let's head over to our [Basic point locator + popup](./mapbox-point-popup.html) example HTML and open it using a code editor. These computers come equipped with Sublime, VS Code and Atom. Use what you know and if you don't know any, I suggest you use VS Code.
+Now let's head over to our [Basic point locator + popup](./examples/mapbox-point-popup.html) example HTML and open it using a code editor. These computers come equipped with Sublime, VS Code and Atom. Use what you know and if you don't know any, I suggest you use VS Code.
 
 
-### [Example: Cluster points + popup](./mapbox-point-cluster.html)
+### [Example: Cluster points + popup](./examples/mapbox-point-cluster.html)
 Unfortunately, for [reasons I don't really understand](https://github.com/mapbox/mapbox-gl-js/issues/5856), you cannot cluster vector tilesets. SIGH. But that's ok! Now you know. And this will give us a chance to work with raw geojson as a source.
 
-Open the [Cluster points + popup](./mapbox-point-cluster.html) example HTML with your code editor.
+Open the [Cluster points + popup](./examples/mapbox-point-cluster.html) example HTML with your code editor.
 
 In your browser window, navigate to `localhost:8000/examples/mapbox-point-cluster.html`
 
-### [Example: Layer choropleth + popup](./mapbox-polygon-popup.html)
 
+### [Example: Layer choropleth + popup](./examples/mapbox-polygon-popup.html)
+Using the same Tileset --> Style method we used with our building permit points, let's upload our building permit hexbins, load them into a Style and then style the Tileset according to your preferences. I would suggest using the same sort of data-driven color scheme we used in the point example. 
+
+You'll notice that the hexbins Tileset will load into a Style as a type of Fill. Fill type vector files have different style options, as you'll notice in the Style tab of the layer popout.
+
+Once you have your styles set as you like them, open the [Layer choropleth + popup](./examples/mapbox-polygon-popup.html) example file in your code editor.
 
 ## Other examples
 Here's a list of all of the [Mapbox-hosted examples](https://docs.mapbox.com/mapbox-gl-js/example/).
