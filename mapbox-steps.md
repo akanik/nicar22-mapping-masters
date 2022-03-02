@@ -154,7 +154,7 @@ Using the same Tileset --> Style method we used with our building permit points,
 
 You'll notice that the hexbins Tileset will load into a Style as a type of Fill. Fill type vector files have different style options, as you'll notice in the Style tab of the layer popout.
 
-Once you have your styles set as you like them, open the [Layer choropleth + popup](./examples/mapbox-polygon-popup.html) example file in your code editor.
+Once you have your styles set as you like them and publish your map, open the [Layer choropleth + popup](./examples/mapbox-polygon-popup.html) example file in your code editor.
 
 ## Other examples
 Here's a list of all of the [Mapbox-hosted examples](https://docs.mapbox.com/mapbox-gl-js/example/).
